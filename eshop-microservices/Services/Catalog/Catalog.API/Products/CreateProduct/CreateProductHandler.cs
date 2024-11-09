@@ -16,14 +16,13 @@ namespace Catalog.API.Products.CreateProduct
     internal class CreateProductCommandHandler
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
-        public Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+        public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
             // Business logic to create a product
             // create a product entity from command object
             // save the product entity to the database
             // return the CreateProductResult result
 
-            throw new NotImplementedException();
             var product = new Product
             {
                 Name = command.Name,
@@ -32,7 +31,11 @@ namespace Catalog.API.Products.CreateProduct
                 ImageFile = command.ImageFile,
                 Price = command.Price
             };
+
             // Save the product entity to the database
+
+            // return result
+            return new CreateProductResult(Guid.NewGuid());
         }
     }
 }
