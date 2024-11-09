@@ -32,6 +32,7 @@ namespace Catalog.API.Products.CreateProduct
                 ImageFile = command.ImageFile,
                 Price = command.Price
             };
+            // Save the product entity to the database
         }
     }
 }
