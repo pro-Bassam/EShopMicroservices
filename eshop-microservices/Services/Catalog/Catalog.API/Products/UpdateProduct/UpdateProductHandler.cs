@@ -9,6 +9,22 @@ public record UpdateProductCommand(
     decimal Price) : ICommand<UpdateProductResult>;
 
 public record UpdateProductResult(bool IsSuccess);
+
+public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(c => c.Id).NotEmpty().WithMessage("Product ID is required.");
+        RuleFor(c => c.Name)
+            .NotEmpty()
+            .WithMessage("Product name is required.")
+            .Length(2, 150).WithMessage("Product name must be between 2 and 150 characters.");
+        RuleFor(c => c.Price)
+            .GreaterThan(0)
+            .WithMessage("Price must be greater than 0");
+    }
+}
+
 internal class UpdateProductCommandHandler(IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
     : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {

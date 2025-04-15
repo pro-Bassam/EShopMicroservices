@@ -14,19 +14,19 @@
     {
         public CreateProductCommandValidator()
         {
-            RuleFor(x => x.Name)
+            RuleFor(c => c.Name)
                 .NotEmpty()
                 .WithMessage("Product name is required.");
 
-            RuleFor(x => x.Category)
+            RuleFor(c => c.Category)
                 .NotEmpty()
                 .WithMessage("Product category is required.");
 
-            RuleFor(x => x.ImageFile)
+            RuleFor(c => c.ImageFile)
                 .NotEmpty()
                 .WithMessage("ImageFile is required.");
 
-            RuleFor(x => x.Price)
+            RuleFor(c => c.Price)
                 .GreaterThan(0)
                 .WithMessage("Price must be greater than 0");
         }
