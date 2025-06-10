@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure Logging
