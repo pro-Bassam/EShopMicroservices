@@ -20,6 +20,7 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(assembly);
     cfg.AddOpenBehavior(typeof(ValidatorBehavior<,>));
+    cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
 // FluentValidation: register all validators in this assembly
