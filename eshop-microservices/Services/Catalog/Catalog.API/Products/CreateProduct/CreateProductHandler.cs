@@ -33,8 +33,7 @@
     }
 
     internal class CreateProductCommandHandler(
-        IDocumentSession session,
-        ILogger<CreateProductCommandHandler> logger)
+        IDocumentSession session)
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(
@@ -47,12 +46,6 @@
             // save the product entity to the database
             // return the CreateProductResult result
 
-            logger.LogInformation(
-                "Creating product: {Name} in categories {Categories}",
-                command.Name,
-                string.Join(",", command.Category)
-            );
-
             var product = new Product
             {
                 Name = command.Name,
@@ -64,12 +57,7 @@
 
             session.Store(product); // to save the product as a document database
             await session.SaveChangesAsync(cancellationToken);
-
-            logger.LogInformation(
-                "Product created with ID: {ProductId}",
-                product.Id
-            );
-
+            
             return new CreateProductResult(product.Id);
         }
     }
