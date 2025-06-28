@@ -8,4 +8,17 @@
     <DockerfileContext>..\..\..\..\eshop-microservices</DockerfileContext>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Basket\CheckoutBasket\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Carter" Version="8.2.1" />
+    <PackageReference Include="Marten" Version="8.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\eshop-microservices\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
+  </ItemGroup>
+
 </Project>
