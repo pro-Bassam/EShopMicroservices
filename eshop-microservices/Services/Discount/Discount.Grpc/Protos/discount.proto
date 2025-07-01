@@ -1,0 +1,56 @@
+// Indicates we are using proto3 syntax, which is recommended for new projects.
+syntax = "proto3";
+
+// Specifies the C# namespace that will be generated for the gRPC service and messages.
+option csharp_namespace = "Discount.Grpc";
+
+// Defines the package name for this proto file (used for organization, similar to a namespace).
+package discount;
+
+// Defines the gRPC service for handling discount-related operations.
+service DiscountProtoService {
+  // RPC method to retrieve a discount by product name.
+  rpc GetDiscount (GetDiscountRequest) returns (CouponModel);
+
+  // RPC method to create a new discount coupon.
+  rpc CreateDiscount (CreateDiscountRequest) returns (CouponModel);
+
+  // RPC method to update an existing discount coupon.
+  rpc UpdateDiscount (UpdateDiscountRequest) returns (CouponModel);
+
+  // RPC method to delete a discount coupon by product name.
+  rpc DeleteDiscount (DeleteDiscountRequest) returns (DeleteDiscountResponse);
+}
+
+// Request message for GetDiscount, requiring a product name to look up the discount.
+message GetDiscountRequest {
+  string productName = 1; // Field #1: The name of the product for which to get the discount.
+}
+
+// Defines the structure of a Coupon, used in requests and responses.
+message CouponModel {
+  string id = 1;           // Field #1: The ID of the coupon (as string for easier cross-language handling).
+  string productName = 2;  // Field #2: The product name associated with the coupon.
+  string description = 3;  // Field #3: The description of the coupon.
+  double amount = 4;       // Field #4: The discount amount as a double.
+}
+
+// Request message for creating a new coupon.
+message CreateDiscountRequest {
+  CouponModel coupon = 1; // Field #1: The coupon data to create.
+}
+
+// Request message for updating an existing coupon.
+message UpdateDiscountRequest {
+  CouponModel coupon = 1; // Field #1: The coupon data to update.
+}
+
+// Request message for deleting a coupon by product name.
+message DeleteDiscountRequest {
+  string productName = 1; // Field #1: The product name of the coupon to delete.
+}
+
+// Response message for the DeleteDiscount RPC, indicating success status.
+message DeleteDiscountResponse {
+  bool success = 1; // Field #1: Indicates whether the deletion was successful.
+}
