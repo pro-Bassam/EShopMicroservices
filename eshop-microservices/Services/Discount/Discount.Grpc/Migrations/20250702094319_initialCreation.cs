@@ -7,7 +7,7 @@
 namespace Discount.Grpc.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,8 +33,7 @@ namespace Discount.Grpc.Migrations
                 values: new object[,]
                 {
                     { 1, 150, "IPhone Discount", "IPhone X" },
-                    { 2, 100, "Samsung Discount", "Samsung 10" },
-                    { 3, 50, "Google Discount", "Google Pixel" }
+                    { 2, 100, "Samsung Discount", "Samsung 10" }
                 });
         }
 

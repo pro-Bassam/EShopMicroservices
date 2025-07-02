@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Discount.Grpc.Migrations
 {
     [DbContext(typeof(DiscountContext))]
-    [Migration("20250701201419_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250702094319_initialCreation")]
+    partial class initialCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,6 @@ namespace Discount.Grpc.Migrations
                             Amount = 100,
                             Description = "Samsung Discount",
                             ProductName = "Samsung 10"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Amount = 50,
-                            Description = "Google Discount",
-                            ProductName = "Google Pixel"
                         });
                 });
 #pragma warning restore 612, 618
