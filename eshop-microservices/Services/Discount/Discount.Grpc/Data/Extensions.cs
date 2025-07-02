@@ -12,8 +12,8 @@ public static class Extensions
         // Retrieve the DiscountContext from DI within this scope
         using var dbContext = scope.ServiceProvider.GetRequiredService<DiscountContext>();
 
-        // Apply pending migrations asynchronously
-        dbContext.Database.MigrateAsync();
+        // Apply pending migrations synchronously to avoid issues
+        dbContext.Database.Migrate();
 
         // Return the app so you can chain it in your Program.cs
         return app;
