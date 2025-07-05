@@ -1,12 +1,14 @@
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add Services to the container e.g. DI
-builder.Services.AddCarter();
-var assembly = Assembly.GetExecutingAssembly(); // NOTE: It is the same as typeof(Program).Assembly;
 
+// Application Services
+var assembly = Assembly.GetExecutingAssembly(); // NOTE: It is the same as typeof(Program).Assembly;
+builder.Services.AddCarter();
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(assembly);
@@ -14,6 +16,7 @@ builder.Services.AddMediatR(cfg =>
     cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+// Data Services
 builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
@@ -22,11 +25,29 @@ builder.Services.AddMarten(opts =>
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis")!;
     //options.InstanceName = "BasketCache:";
 });
+
+// gRPC Services
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+    {
+        options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+    })
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        // NOTE: This is not recommended for production use, as it disables SSL certificate validation. used for development purposes only.
+        var handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        return handler;
+    });
+
+// Cross-Cutting Services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 builder.Services.AddHealthChecks()
@@ -38,7 +59,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline
 app.MapCarter();
 app.UseExceptionHandler(options => { });
-app.UseHealthChecks("/health", 
+app.UseHealthChecks("/health",
     new HealthCheckOptions
     {
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
