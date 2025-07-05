@@ -34,9 +34,18 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 // gRPC Services
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
-{
-    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
-});
+    {
+        options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+    })
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        // NOTE: This is not recommended for production use, as it disables SSL certificate validation. used for development purposes only.
+        var handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        return handler;
+    });
 
 // Cross-Cutting Services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
