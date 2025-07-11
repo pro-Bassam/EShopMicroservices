@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{02
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.API", "Services\Ordering\Ordering.API\Ordering.API.csproj", "{A6FEE011-8A05-47A3-B4F3-0BCCE502F0F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Domian", "Services\Ordering\Ordering.Domian\Ordering.Domian.csproj", "{7364E829-7AF7-41FC-A81A-E148F3A7E0FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Domain", "Services\Ordering\Ordering.Domian\Ordering.Domain.csproj", "{7364E829-7AF7-41FC-A81A-E148F3A7E0FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Application", "Services\Ordering\Ordering.Application\Ordering.Application.csproj", "{013DEC1D-40F0-47C9-9E15-7F2F8C6B301E}"
 EndProject
