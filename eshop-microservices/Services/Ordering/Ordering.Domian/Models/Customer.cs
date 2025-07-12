@@ -4,5 +4,19 @@
     {
         public string Name { get; private set; } = default!;
         public string Email { get; private set; } = default!;
+
+        // this what makes it a Rich Domain Model
+        public static Customer Create(CustomerId id, string name, string email)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(name);
+            ArgumentException.ThrowIfNullOrWhiteSpace(email);
+
+            return new Customer
+            {
+                Id = id,
+                Name = name,
+                Email = email
+            };
+        }
     }
 }
