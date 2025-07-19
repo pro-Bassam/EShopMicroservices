@@ -12,7 +12,10 @@ namespace Ordering.Infrastructure
             // Example: services.AddScoped<IOrderService, OrderService>();
 
             var connectionString = configuration.GetConnectionString("Database");
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
+            //services.AddScoped<>;
 
             return services;
         }
