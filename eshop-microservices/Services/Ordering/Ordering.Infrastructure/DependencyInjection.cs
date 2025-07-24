@@ -9,13 +9,16 @@ namespace Ordering.Infrastructure
             (this IServiceCollection services, IConfiguration configuration)
         {
             // Register application services here
-            // Example: services.AddScoped<IOrderService, OrderService>();
-
             var connectionString = configuration.GetConnectionString("Database");
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
 
-            //services.AddScoped<>;
+            // Add services to the container
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.AddInterceptors(new AuditableEntityInterceptor());
+                options.UseSqlServer(connectionString);
+            });
+
+            //services.AddScoped<IOrderService, OrderService>();
 
             return services;
         }
