@@ -1,1 +1,1 @@
-﻿
+﻿global using BuildingBlocks.CQRS;
