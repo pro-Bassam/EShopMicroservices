@@ -1,9 +1,13 @@
-﻿using System.Reflection;
+﻿using Ordering.Application.Data;
+using System.Reflection;
 
 namespace Ordering.Infrastructure.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options) { }
+
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Order> Orders => Set<Order>();
