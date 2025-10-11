@@ -1,4 +1,6 @@
-﻿namespace Ordering.API
+﻿using Carter;
+
+namespace Ordering.API
 {
     public static class DependencyInjection
     {
@@ -6,6 +8,7 @@
         {
             // Register application services here
             // Example: services.AddScoped<IOrderService, OrderService>();
+            services.AddCarter();
 
             return services;
         }
@@ -14,7 +17,7 @@
         {
             // Configure application services here
             // Example: app.UseMiddleware<CustomMiddleware>();
-            // app.MapCarter()
+            app.MapCarter();
 
             return app;
         }
