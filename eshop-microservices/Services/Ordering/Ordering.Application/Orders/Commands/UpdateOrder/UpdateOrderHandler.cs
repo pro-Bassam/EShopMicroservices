@@ -41,5 +41,24 @@ public class UpdateOrderHandler(IApplicationDbContext dbContext)
             payment: updatedPayment,
             status: orderDto.Status
         );
+
+        // FIX: Update order items to ensure TotalPrice is calculated correctly
+        UpdateOrderItems(order, orderDto.OrderItems);
+    }
+
+    private static void UpdateOrderItems(Order order, IEnumerable<OrderItemDto> orderItemDtos)
+    {
+        // Clear existing items
+        var existingProductIds = order.OrderItems.Select(oi => oi.ProductId).ToList();
+        foreach (var productId in existingProductIds)
+        {
+            order.Remove(productId);
+        }
+
+        // Add updated items
+        foreach (var itemDto in orderItemDtos)
+        {
+            order.Add(ProductId.Of(itemDto.ProductId), itemDto.Quantity, itemDto.Price);
+        }
     }
 }
