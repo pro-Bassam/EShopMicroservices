@@ -1,4 +1,4 @@
-﻿using Carter;
+﻿using BuildingBlocks.Exceptions.Handler;
 
 namespace Ordering.API
 {
@@ -10,6 +10,8 @@ namespace Ordering.API
             // Example: services.AddScoped<IOrderService, OrderService>();
             services.AddCarter();
 
+            services.AddExceptionHandler<CustomExceptionHandler>();
+
             return services;
         }
 
@@ -18,6 +20,8 @@ namespace Ordering.API
             // Configure application services here
             // Example: app.UseMiddleware<CustomMiddleware>();
             app.MapCarter();
+
+            app.UseExceptionHandler(options => { });
 
             return app;
         }
