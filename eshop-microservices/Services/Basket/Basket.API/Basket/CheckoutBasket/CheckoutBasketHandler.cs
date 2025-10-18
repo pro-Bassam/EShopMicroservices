@@ -33,6 +33,8 @@ public class CheckoutBasketCommandHandler
         var eventMessage = command.BasketCheckoutDto.Adapt<BasketCheckoutEvent>();
         eventMessage.TotalPrice = basket.TotalPrice;
 
+        // This introduce Dual write issue that can be handled by outbox pattern
+
         await publishEndpoint.Publish(eventMessage, cancellationToken);
 
         await repository.DeleteBasket(command.BasketCheckoutDto.UserName, cancellationToken);
