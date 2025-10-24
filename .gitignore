@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/eshop-microservices/.idea/.idea.eshop-microservices/.idea/workspace.xml
