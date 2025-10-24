@@ -28,7 +28,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bcd97e42-ea4a-4687-b813-2af5d0bab1c8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.eshop-microservices/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.eshop-microservices/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApiGateways/YarpApiGateway/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateways/YarpApiGateway/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Basket/Basket.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Basket/Basket.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Discount/Discount.Grpc/discountdb-shm" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Discount/Discount.Grpc/discountdb-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Discount/Discount.Grpc/discountdb-wal" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Discount/Discount.Grpc/discountdb-wal" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,32 +40,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="34RRIAS7yZto57MVe397rTafR1V" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "create-YARP-API-gateway",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/bassa/Desktop/EShopMicroservices/eshop-microservices/eshop-microservices.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+    "git-widget-placeholder": "master",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
